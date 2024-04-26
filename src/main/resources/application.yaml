@@ -1,0 +1,41 @@
+server:
+  port: ${FILES_PORT:8080}
+  servlet:
+    context-path: ${FILES_CONTEXT_PATH:/api}
+  tomcat:
+    threads:
+      max: ${FILES_THREADS_MAX:200}
+      min-spare: ${FILES_THREADS_MIN_SPARE:10}
+
+logging:
+  config: ${FILES_LOGGING_CONFIG:classpath:logback-spring.xml}
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 2048MB
+      max-request-size: 2050MB
+  mvc:
+    static-path-pattern: /**
+  sql:
+    init:
+      mode: always
+  jpa:
+    mapping-resources:
+      - hbm.xml
+    repositories:
+      enabled: true
+    hibernate:
+      ddl-auto: none
+      enable_lazy_load_no_trans: false
+    open-in-view: false
+    properties:
+      show-sql: false
+      hibernate:
+        show_sql: false
+        format_sql: false
+  datasource:
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;MODE=PostgreSQL
+    driverClassName: org.h2.Driver
+    username: sa
+    password:

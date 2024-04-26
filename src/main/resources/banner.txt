@@ -1,0 +1,2 @@
+
+Examen de Jenkins version @project.version@
